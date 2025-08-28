@@ -167,7 +167,7 @@ const CompanySettings = ({ onBack = () => console.log('Back clicked') }) => {
     },
     input: {
       width: '100%',
-      padding: '16px 24px',
+      padding: '16px 2px',
       border: '2px solid #e5e7eb',
       borderRadius: '12px',
       fontSize: '18px',

@@ -88,7 +88,7 @@ const Dashboard = ({ onNavigate }) => {
             <div
               style={{
                 display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+                gridTemplateColumns: "repeat(2, 1fr)",
                 gap: "24px",
               }}
             >
@@ -184,7 +184,7 @@ const sidebarButtonStyle = (isActive) => ({
   marginBottom: "4px",
   fontSize: "15px",
   fontWeight: isActive ? "600" : "400",
-  "&:hover": {
+  ":hover": {
     backgroundColor: isActive ? "#3b82f6" : "#334155",
   }
 });
@@ -199,7 +199,11 @@ const cardStyle = {
   position: "relative",
   overflow: "hidden",
   border: "1px solid #e2e8f0",
-  "&:hover": {
+  minHeight: "180px",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  ":hover": {
     transform: "translateY(-4px)",
     boxShadow: "0 10px 15px rgba(0,0,0,0.07), 0 4px 6px rgba(0,0,0,0.05)",
   }
@@ -285,7 +289,7 @@ const inputStyle = {
   borderRadius: "8px",
   fontSize: "16px",
   transition: "all 0.2s ease",
-  "&:focus": {
+  ":focus": {
     outline: "none",
     borderColor: "#3b82f6",
     boxShadow: "0 0 0 3px rgba(59, 130, 246, 0.2)"
@@ -303,7 +307,7 @@ const primaryButtonStyle = {
   cursor: "pointer",
   transition: "all 0.2s ease",
   marginTop: "8px",
-  "&:hover": {
+  ":hover": {
     backgroundColor: "#2563eb"
   }
 };
