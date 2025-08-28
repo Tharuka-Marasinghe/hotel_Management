@@ -197,8 +197,9 @@ const UserManagement = ({ onNavigate }) => {
               >
                 <option value="all">All Roles</option>
                 <option value="Admin">Admin</option>
-                <option value="Manager">Manager</option>
-                <option value="User">User</option>
+                <option value="Management">Management</option>
+                <option value="Housekeeping">Housekeeping</option>
+                <option value="Reservation">Reservation</option>
               </select>
               <select
                 value={filterStatus}
@@ -331,9 +332,10 @@ const UserManagement = ({ onNavigate }) => {
                     onChange={(e) => setNewUser({...newUser, role: e.target.value})}
                     style={inputStyle}
                   >
-                    <option value="User">User</option>
-                    <option value="Manager">Manager</option>
                     <option value="Admin">Admin</option>
+                    <option value="Management">Management</option>
+                    <option value="Housekeeping">Housekeeping</option>
+                    <option value="Reservation">Reservation</option>
                   </select>
                 </div>
 
@@ -421,9 +423,10 @@ const UserManagement = ({ onNavigate }) => {
                       onChange={(e) => setEditingUser({...editingUser, role: e.target.value})}
                       style={inputStyle}
                     >
-                      <option value="User">User</option>
-                      <option value="Manager">Manager</option>
                       <option value="Admin">Admin</option>
+                      <option value="Management">Management</option>
+                      <option value="Housekeeping">Housekeeping</option>
+                      <option value="Reservation">Reservation</option>
                     </select>
                   </div>
                   <div style={inputGroupStyle}>
