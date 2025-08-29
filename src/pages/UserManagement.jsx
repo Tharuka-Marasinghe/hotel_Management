@@ -15,7 +15,7 @@ const UserManagement = ({ onNavigate }) => {
       id: 2,
       name: 'Jane Smith',
       email: 'jane.smith@example.com',
-      role: 'Manager',
+      role: 'Management',
       status: 'Active',
       lastLogin: '2024-01-14',
       createdDate: '2023-08-22'
@@ -24,7 +24,7 @@ const UserManagement = ({ onNavigate }) => {
       id: 3,
       name: 'Bob Johnson',
       email: 'bob.johnson@example.com',
-      role: 'User',
+      role: 'Reservation',
       status: 'Inactive',
       lastLogin: '2023-12-20',
       createdDate: '2023-11-05'
@@ -33,7 +33,7 @@ const UserManagement = ({ onNavigate }) => {
       id: 4,
       name: 'Alice Brown',
       email: 'alice.brown@example.com',
-      role: 'User',
+      role: 'Housekeeping',
       status: 'Active',
       lastLogin: '2024-01-13',
       createdDate: '2023-09-18'
@@ -42,7 +42,7 @@ const UserManagement = ({ onNavigate }) => {
       id: 5,
       name: 'Charlie Wilson',
       email: 'charlie.wilson@example.com',
-      role: 'Manager',
+      role: 'Management',
       status: 'Active',
       lastLogin: '2024-01-12',
       createdDate: '2023-07-30'
@@ -497,7 +497,7 @@ const UserManagement = ({ onNavigate }) => {
             <div style={roleDistributionStyle}>
               <h3 style={formTitleStyle}>Role Distribution</h3>
               <div style={roleChartStyle}>
-                {['Admin', 'Manager', 'User'].map(role => {
+                {['Admin', 'Management', 'Reservation','Housekeeping'].map(role => {
                   const count = users.filter(u => u.role === role).length;
                   const percentage = users.length > 0 ? (count / users.length * 100).toFixed(1) : 0;
                   return (

@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 // Import your UserManagement component
 import UserManagement from "../pages/UserManagement";
+// Import ReservationManagement components
+import RoomAvailability from "../pages/ReservationManagement/RoomAvailability";
+import ReservedRoomInfo from "../pages/ReservationManagement/RecervedRoomInfo";
 
 const Dashboard = ({ onNavigate }) => {
   const [activePage, setActivePage] = useState("dashboard");
@@ -13,13 +16,6 @@ const Dashboard = ({ onNavigate }) => {
       onNavigate(pageId);
     }
   };
-
-  // If user-management is active, render the UserManagement component
-{/* User Management Page */}
-{activePage === "user-management" && (
-  <UserManagement onNavigate={handleCardClick} />
-)}
-
 
   return (
     <div style={{ display: "flex", minHeight: "100vh", backgroundColor: "#f5f7fa" }}>
@@ -86,19 +82,34 @@ const Dashboard = ({ onNavigate }) => {
       {/* Main Content Area */}
       <div style={{ flex: 1, padding: "32px", overflowY: "auto" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-          {/* ✅ User Management Page */}
-{activePage === "../pages/UserManagement" && (
-  <UserManagement onNavigate={handleCardClick} />
-)}
+          {/* User Management Page */}
+          {activePage === "user-management" && (
+            <UserManagement onNavigate={handleCardClick} />
+          )}
 
-          <div style={{ marginBottom: "32px" }}>
-            <h1 style={{ fontSize: "28px", fontWeight: "bold", color: "#1e293b", marginBottom: "8px" }}>
-              Admin Dashboard
-            </h1>
-            <p style={{ color: "#64748b" }}>Manage your application settings and configurations</p>
-          </div>
+          {/* Room Availability Page */}
+          {activePage === "room-availability" && (
+            <RoomAvailability onNavigate={handleCardClick} />
+          )}
 
-          {/* ✅ Conditional Rendering */}
+          {/* Reserved Room Info Page */}
+          {activePage === "reserved-room-info" && (
+            <ReservedRoomInfo onNavigate={handleCardClick} />
+          )}
+
+          {/* Dashboard Header */}
+          {(activePage === "dashboard" || activePage === "company-settings" || activePage === "notifications" || 
+            activePage === "user-profile" || activePage === "add-new-user" || activePage === "billing" || 
+            activePage === "database" || activePage === "reservation-management") && (
+            <div style={{ marginBottom: "32px" }}>
+              <h1 style={{ fontSize: "28px", fontWeight: "bold", color: "#1e293b", marginBottom: "8px" }}>
+                Admin Dashboard
+              </h1>
+              <p style={{ color: "#64748b" }}>Manage your application settings and configurations</p>
+            </div>
+          )}
+
+          {/* Dashboard Cards */}
           {activePage === "dashboard" && (
             <div
               style={{
@@ -109,7 +120,7 @@ const Dashboard = ({ onNavigate }) => {
             >
               {/* User Management Card */}
               <div
-                onClick={() => handleCardClick("../pages/UserManagement")}
+                onClick={() => handleCardClick("user-management")}
                 style={{
                   ...cardStyle,
                   boxShadow: hoveredCard === "user-management"
@@ -161,7 +172,7 @@ const Dashboard = ({ onNavigate }) => {
             </div>
           )}
 
-          {/* 👤 User Profile Form */}
+          {/* User Profile Form */}
           {activePage === "user-profile" && (
             <div style={formContainerStyle}>
               <h2 style={formTitleStyle}>User Profile</h2>
@@ -179,7 +190,7 @@ const Dashboard = ({ onNavigate }) => {
             </div>
           )}
 
-          {/* ➕ Add New User Form */}
+          {/* Add New User Form */}
           {activePage === "add-new-user" && (
             <div style={formContainerStyle}>
               <h2 style={formTitleStyle}>Add New User</h2>
@@ -201,7 +212,7 @@ const Dashboard = ({ onNavigate }) => {
             </div>
           )}
 
-          {/* ⚙️ Company Settings */}
+          {/* Company Settings */}
           {activePage === "company-settings" && (
             <div style={formContainerStyle}>
               <h2 style={formTitleStyle}>Company Settings</h2>
@@ -227,7 +238,7 @@ const Dashboard = ({ onNavigate }) => {
             </div>
           )}
 
-          {/* 🔔 Notifications */}
+          {/* Notifications */}
           {activePage === "notifications" && (
             <div style={formContainerStyle}>
               <h2 style={formTitleStyle}>Notification Settings</h2>
@@ -265,7 +276,7 @@ const Dashboard = ({ onNavigate }) => {
             </div>
           )}
 
-          {/* 💳 Billing Page */}
+          {/* Billing Page */}
           {activePage === "billing" && (
             <div style={formContainerStyle}>
               <h2 style={formTitleStyle}>Billing & Payments</h2>
@@ -302,7 +313,7 @@ const Dashboard = ({ onNavigate }) => {
             </div>
           )}
 
-          {/* 💾 Database Management */}
+          {/* Database Management */}
           {activePage === "database" && (
             <div style={formContainerStyle}>
               <h2 style={formTitleStyle}>Database Management</h2>
@@ -341,44 +352,94 @@ const Dashboard = ({ onNavigate }) => {
             </div>
           )}
 
-          {/* 📅 Reservation Management */}
+          {/* Reservation Management */}
           {activePage === "reservation-management" && (
             <div style={formContainerStyle}>
-              <h2 style={formTitleStyle}>Reservation Management</h2>
-              <div style={formStyle}>
-                <div style={reservationStatsStyle}>
-                  <div style={reservationStatCardStyle}>
-                    <h3 style={statCardTitleStyle}>Today's Reservations</h3>
-                    <span style={statCardValueStyle}>24</span>
-                  </div>
-                  <div style={reservationStatCardStyle}>
-                    <h3 style={statCardTitleStyle}>Pending Confirmations</h3>
-                    <span style={statCardValueStyle}>7</span>
-                  </div>
-                  <div style={reservationStatCardStyle}>
-                    <h3 style={statCardTitleStyle}>This Week</h3>
-                    <span style={statCardValueStyle}>156</span>
-                  </div>
+              <div style={{ display: "flex", alignItems: "center", gap: "16px", marginBottom: "24px" }}>
+                <button
+                  onClick={() => handleCardClick("dashboard")}
+                  style={{
+                    backgroundColor: "transparent",
+                    color: "#6b7280",
+                    border: "1px solid #d1d5db",
+                    borderRadius: "8px",
+                    padding: "8px 12px",
+                    fontSize: "14px",
+                    cursor: "pointer",
+                    transition: "all 0.2s ease",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "4px"
+                  }}
+                >
+                  ← Back to Dashboard
+                </button>
+                <h2 style={{...formTitleStyle, margin: "0", paddingBottom: "0", border: "none"}}>Reservation Management</h2>
+              </div>
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(2, 1fr)",
+                  gap: "24px",
+                  marginTop: "24px"
+                }}
+              >
+                {/* Room Availability Card */}
+                <div
+                  onClick={() => handleCardClick("room-availability")}
+                  style={{
+                    ...cardStyle,
+                    boxShadow: hoveredCard === "room-availability"
+                      ? "0 8px 16px rgba(34,197,94,0.15)"
+                      : cardStyle.boxShadow,
+                    borderColor: hoveredCard === "room-availability"
+                      ? "#22c55e"
+                      : cardStyle.border,
+                  }}
+                  onMouseEnter={() => setHoveredCard("room-availability")}
+                  onMouseLeave={() => setHoveredCard(null)}
+                >
+                  <div style={{...iconContainerStyle, backgroundColor: "#f0fdf4"}}>🏨</div>
+                  <h3 style={cardTitleStyle}>Room Availability</h3>
+                  <p style={cardDescriptionStyle}>Check room status, availability, and manage room assignments</p>
+                  <div
+                    style={{
+                      ...cardHoverStyle,
+                      background: "linear-gradient(90deg, #22c55e, #4ade80)",
+                      transform: hoveredCard === "room-availability"
+                        ? "scaleX(1)"
+                        : cardHoverStyle.transform,
+                    }}
+                  ></div>
                 </div>
-                
-                <div style={inputGroupStyle}>
-                  <label style={labelStyle}>Filter by Date:</label>
-                  <input type="date" style={inputStyle} />
-                </div>
-                
-                <div style={inputGroupStyle}>
-                  <label style={labelStyle}>Filter by Status:</label>
-                  <select style={inputStyle}>
-                    <option value="all">All Reservations</option>
-                    <option value="confirmed">Confirmed</option>
-                    <option value="pending">Pending</option>
-                    <option value="cancelled">Cancelled</option>
-                  </select>
-                </div>
-                
-                <div style={buttonRowStyle}>
-                  <button type="button" style={primaryButtonStyle}>View All Reservations</button>
-                  <button type="button" style={secondaryButtonStyle}>Export Data</button>
+
+                {/* Reserved Room Information Card */}
+                <div
+                  onClick={() => handleCardClick("reserved-room-info")}
+                  style={{
+                    ...cardStyle,
+                    boxShadow: hoveredCard === "reserved-room-info"
+                      ? "0 8px 16px rgba(239,68,68,0.15)"
+                      : cardStyle.boxShadow,
+                    borderColor: hoveredCard === "reserved-room-info"
+                      ? "#ef4444"
+                      : cardStyle.border,
+                  }}
+                  onMouseEnter={() => setHoveredCard("reserved-room-info")}
+                  onMouseLeave={() => setHoveredCard(null)}
+                >
+                  <div style={{...iconContainerStyle, backgroundColor: "#fef2f2"}}>📋</div>
+                  <h3 style={cardTitleStyle}>Reserved Room Information</h3>
+                  <p style={cardDescriptionStyle}>View and manage current reservations and booking details</p>
+                  <div
+                    style={{
+                      ...cardHoverStyle,
+                      background: "linear-gradient(90deg, #ef4444, #f87171)",
+                      transform: hoveredCard === "reserved-room-info"
+                        ? "scaleX(1)"
+                        : cardHoverStyle.transform,
+                    }}
+                  ></div>
                 </div>
               </div>
             </div>
@@ -686,41 +747,6 @@ const statValueStyle = {
   fontSize: "16px",
   fontWeight: "600",
   color: "#1e293b"
-};
-
-// Reservation styles
-const reservationStatsStyle = {
-  display: "grid",
-  gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-  gap: "16px",
-  marginBottom: "24px"
-};
-
-const reservationStatCardStyle = {
-  padding: "20px",
-  backgroundColor: "#f1f5f9",
-  borderRadius: "8px",
-  border: "1px solid #e2e8f0",
-  textAlign: "center"
-};
-
-const statCardTitleStyle = {
-  fontSize: "14px",
-  color: "#6b7280",
-  marginBottom: "8px",
-  fontWeight: "500"
-};
-
-const statCardValueStyle = {
-  fontSize: "24px",
-  fontWeight: "700",
-  color: "#3b82f6"
-};
-
-const buttonRowStyle = {
-  display: "flex",
-  gap: "12px",
-  marginTop: "16px"
 };
 
 export default Dashboard;
