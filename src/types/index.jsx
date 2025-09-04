@@ -7,7 +7,14 @@ export const createUser = (id, name, email, role) => ({
 });
 
 // Company Settings interface
-export const createCompanySettings = (name, logo, primaryColor, secondaryColor, fontFamily, fontSize) => ({
+export const createCompanySettings = (
+  name,
+  logo,
+  primaryColor,
+  secondaryColor,
+  fontFamily,
+  fontSize
+) => ({
   name,
   logo,
   primaryColor,
