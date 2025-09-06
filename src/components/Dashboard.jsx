@@ -4,6 +4,7 @@ import UserManagement from "../pages/UserManagement";
 // Import ReservationManagement components
 import RoomAvailability from "../pages/ReservationManagement/RoomAvailability";
 import ReservedRoomInfo from "../pages/ReservationManagement/RecervedRoomInfo";
+import ReservationHome from "../pages/ReservationHome/ReservationHome";
 
 const Dashboard = ({ onNavigate }) => {
   const [activePage, setActivePage] = useState("dashboard");
@@ -30,7 +31,13 @@ const Dashboard = ({ onNavigate }) => {
           boxShadow: "2px 0 10px rgba(0,0,0,0.1)",
         }}
       >
-        <div style={{ padding: "0 24px 24px", borderBottom: "1px solid #334155", marginBottom: "24px" }}>
+        <div
+          style={{
+            padding: "0 24px 24px",
+            borderBottom: "1px solid #334155",
+            marginBottom: "24px",
+          }}
+        >
           <h2 style={{ fontSize: "20px", fontWeight: "bold", marginBottom: "8px", color: "white" }}>
             Navigation
           </h2>
@@ -46,36 +53,39 @@ const Dashboard = ({ onNavigate }) => {
             padding: "0 16px",
           }}
         >
-          <button 
-            onClick={() => handleCardClick("dashboard")} 
-            style={sidebarButtonStyle(activePage === "dashboard")}
-          >
+          <button onClick={() => handleCardClick("dashboard")} style={sidebarButtonStyle(activePage === "dashboard")}>
             📊 Dashboard
           </button>
-          <button 
-            onClick={() => handleCardClick("company-settings")} 
+          <button
+            onClick={() => handleCardClick("company-settings")}
             style={sidebarButtonStyle(activePage === "company-settings")}
           >
             ⚙️ Company Settings
           </button>
-          <button 
-            onClick={() => handleCardClick("notifications")} 
+          <button
+            onClick={() => handleCardClick("notifications")}
             style={sidebarButtonStyle(activePage === "notifications")}
           >
             🔔 Notifications
           </button>
-          <button 
-            onClick={() => handleCardClick("user-profile")} 
+          <button
+            onClick={() => handleCardClick("user-profile")}
             style={sidebarButtonStyle(activePage === "user-profile")}
           >
             👤 User Profile
           </button>
-          <button 
-            onClick={() => handleCardClick("add-new-user")} 
+          <button
+            onClick={() => handleCardClick("add-new-user")}
             style={sidebarButtonStyle(activePage === "add-new-user")}
           >
             ➕ Add New User
           </button>
+          {/* <button
+            onClick={() => handleCardClick("reservation-home")}
+            style={sidebarButtonStyle(activePage === "reservation-home")}
+          >
+            🏠 Reservation Home
+          </button> */}
         </div>
       </div>
 
@@ -83,26 +93,35 @@ const Dashboard = ({ onNavigate }) => {
       <div style={{ flex: 1, padding: "32px", overflowY: "auto" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           {/* User Management Page */}
-          {activePage === "user-management" && (
-            <UserManagement onNavigate={handleCardClick} />
-          )}
+          {activePage === "user-management" && <UserManagement onNavigate={handleCardClick} />}
 
           {/* Room Availability Page */}
-          {activePage === "room-availability" && (
-            <RoomAvailability onNavigate={handleCardClick} />
-          )}
+          {activePage === "room-availability" && <RoomAvailability onNavigate={handleCardClick} />}
 
           {/* Reserved Room Info Page */}
-          {activePage === "reserved-room-info" && (
-            <ReservedRoomInfo onNavigate={handleCardClick} />
-          )}
+          {activePage === "reserved-room-info" && <ReservedRoomInfo onNavigate={handleCardClick} />}
+
+          {/* Reservation Home Page (fixed placement) */}
+          {activePage === "reservation-home" && <ReservationHome onNavigate={handleCardClick} />}
 
           {/* Dashboard Header */}
-          {(activePage === "dashboard" || activePage === "company-settings" || activePage === "notifications" || 
-            activePage === "user-profile" || activePage === "add-new-user" || activePage === "billing" || 
-            activePage === "database" || activePage === "reservation-management") && (
+          {(activePage === "dashboard" ||
+            activePage === "company-settings" ||
+            activePage === "notifications" ||
+            activePage === "user-profile" ||
+            activePage === "add-new-user" ||
+            activePage === "billing" ||
+            activePage === "database" ||
+            activePage === "reservation-management") && (
             <div style={{ marginBottom: "32px" }}>
-              <h1 style={{ fontSize: "28px", fontWeight: "bold", color: "#1e293b", marginBottom: "8px" }}>
+              <h1
+                style={{
+                  fontSize: "28px",
+                  fontWeight: "bold",
+                  color: "#1e293b",
+                  marginBottom: "8px",
+                }}
+              >
                 Admin Dashboard
               </h1>
               <p style={{ color: "#64748b" }}>Manage your application settings and configurations</p>
@@ -123,12 +142,12 @@ const Dashboard = ({ onNavigate }) => {
                 onClick={() => handleCardClick("user-management")}
                 style={{
                   ...cardStyle,
-                  boxShadow: hoveredCard === "user-management"
-                    ? "0 8px 16px rgba(59,130,246,0.15)"
-                    : cardStyle.boxShadow,
-                  borderColor: hoveredCard === "user-management"
-                    ? "#3b82f6"
-                    : cardStyle.border,
+                  boxShadow:
+                    hoveredCard === "user-management"
+                      ? "0 8px 16px rgba(59,130,246,0.15)"
+                      : cardStyle.boxShadow,
+                  borderColor:
+                    hoveredCard === "user-management" ? "#3b82f6" : cardStyle.border,
                 }}
                 onMouseEnter={() => setHoveredCard("user-management")}
                 onMouseLeave={() => setHoveredCard(null)}
@@ -139,9 +158,8 @@ const Dashboard = ({ onNavigate }) => {
                 <div
                   style={{
                     ...cardHoverStyle,
-                    transform: hoveredCard === "user-management"
-                      ? "scaleX(1)"
-                      : cardHoverStyle.transform,
+                    transform:
+                      hoveredCard === "user-management" ? "scaleX(1)" : cardHoverStyle.transform,
                   }}
                 ></div>
               </div>
@@ -185,7 +203,9 @@ const Dashboard = ({ onNavigate }) => {
                   <label style={labelStyle}>Email:</label>
                   <input type="email" placeholder="Enter your email" style={inputStyle} />
                 </div>
-                <button type="button" style={primaryButtonStyle}>Update Profile</button>
+                <button type="button" style={primaryButtonStyle}>
+                  Update Profile
+                </button>
               </div>
             </div>
           )}
@@ -207,7 +227,9 @@ const Dashboard = ({ onNavigate }) => {
                   <label style={labelStyle}>Password:</label>
                   <input type="password" placeholder="Enter password" style={inputStyle} />
                 </div>
-                <button type="button" style={primaryButtonStyle}>Create User</button>
+                <button type="button" style={primaryButtonStyle}>
+                  Create User
+                </button>
               </div>
             </div>
           )}
@@ -233,7 +255,9 @@ const Dashboard = ({ onNavigate }) => {
                   <label style={labelStyle}>Company Address:</label>
                   <textarea placeholder="Enter company address" style={textareaStyle}></textarea>
                 </div>
-                <button type="button" style={primaryButtonStyle}>Update Settings</button>
+                <button type="button" style={primaryButtonStyle}>
+                  Update Settings
+                </button>
               </div>
             </div>
           )}
@@ -248,30 +272,40 @@ const Dashboard = ({ onNavigate }) => {
                     <input type="checkbox" style={checkboxStyle} defaultChecked />
                     Email Notifications
                   </label>
-                  <p style={checkboxDescriptionStyle}>Receive email notifications for important updates</p>
+                  <p style={checkboxDescriptionStyle}>
+                    Receive email notifications for important updates
+                  </p>
                 </div>
                 <div style={checkboxGroupStyle}>
                   <label style={checkboxLabelStyle}>
                     <input type="checkbox" style={checkboxStyle} />
                     SMS Notifications
                   </label>
-                  <p style={checkboxDescriptionStyle}>Receive SMS notifications for urgent matters</p>
+                  <p style={checkboxDescriptionStyle}>
+                    Receive SMS notifications for urgent matters
+                  </p>
                 </div>
                 <div style={checkboxGroupStyle}>
                   <label style={checkboxLabelStyle}>
                     <input type="checkbox" style={checkboxStyle} defaultChecked />
                     Push Notifications
                   </label>
-                  <p style={checkboxDescriptionStyle}>Receive push notifications in your browser</p>
+                  <p style={checkboxDescriptionStyle}>
+                    Receive push notifications in your browser
+                  </p>
                 </div>
                 <div style={checkboxGroupStyle}>
                   <label style={checkboxLabelStyle}>
                     <input type="checkbox" style={checkboxStyle} />
                     Marketing Emails
                   </label>
-                  <p style={checkboxDescriptionStyle}>Receive marketing and promotional emails</p>
+                  <p style={checkboxDescriptionStyle}>
+                    Receive marketing and promotional emails
+                  </p>
                 </div>
-                <button type="button" style={primaryButtonStyle}>Save Preferences</button>
+                <button type="button" style={primaryButtonStyle}>
+                  Save Preferences
+                </button>
               </div>
             </div>
           )}
@@ -287,9 +321,11 @@ const Dashboard = ({ onNavigate }) => {
                     <span style={planNameStyle}>Professional Plan</span>
                     <span style={planPriceStyle}>$29.99/month</span>
                   </div>
-                  <p style={planDescriptionStyle}>Access to all premium features and priority support</p>
+                  <p style={planDescriptionStyle}>
+                    Access to all premium features and priority support
+                  </p>
                 </div>
-                
+
                 <div style={inputGroupStyle}>
                   <label style={labelStyle}>Cardholder Name:</label>
                   <input type="text" placeholder="Enter cardholder name" style={inputStyle} />
@@ -308,7 +344,9 @@ const Dashboard = ({ onNavigate }) => {
                     <input type="text" placeholder="123" style={inputStyle} />
                   </div>
                 </div>
-                <button type="button" style={primaryButtonStyle}>Update Payment Method</button>
+                <button type="button" style={primaryButtonStyle}>
+                  Update Payment Method
+                </button>
               </div>
             </div>
           )}
@@ -321,16 +359,22 @@ const Dashboard = ({ onNavigate }) => {
                 <div style={databaseActionStyle}>
                   <h3 style={databaseActionTitleStyle}>Database Backup</h3>
                   <p style={databaseActionDescriptionStyle}>Create a backup of your database</p>
-                  <button type="button" style={secondaryButtonStyle}>Create Backup</button>
+                  <button type="button" style={secondaryButtonStyle}>
+                    Create Backup
+                  </button>
                 </div>
-                
+
                 <div style={databaseActionStyle}>
                   <h3 style={databaseActionTitleStyle}>Database Restore</h3>
-                  <p style={databaseActionDescriptionStyle}>Restore database from a backup file</p>
+                  <p style={databaseActionDescriptionStyle}>
+                    Restore database from a backup file
+                  </p>
                   <input type="file" style={fileInputStyle} accept=".sql,.db" />
-                  <button type="button" style={warningButtonStyle}>Restore Database</button>
+                  <button type="button" style={warningButtonStyle}>
+                    Restore Database
+                  </button>
                 </div>
-                
+
                 <div style={databaseActionStyle}>
                   <h3 style={databaseActionTitleStyle}>Database Statistics</h3>
                   <div style={statsContainerStyle}>
@@ -355,7 +399,14 @@ const Dashboard = ({ onNavigate }) => {
           {/* Reservation Management */}
           {activePage === "reservation-management" && (
             <div style={formContainerStyle}>
-              <div style={{ display: "flex", alignItems: "center", gap: "16px", marginBottom: "24px" }}>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "16px",
+                  marginBottom: "24px",
+                }}
+              >
                 <button
                   onClick={() => handleCardClick("dashboard")}
                   style={{
@@ -369,19 +420,21 @@ const Dashboard = ({ onNavigate }) => {
                     transition: "all 0.2s ease",
                     display: "flex",
                     alignItems: "center",
-                    gap: "4px"
+                    gap: "4px",
                   }}
                 >
                   ← Back to Dashboard
                 </button>
-                <h2 style={{...formTitleStyle, margin: "0", paddingBottom: "0", border: "none"}}>Reservation Management</h2>
+                <h2 style={{ ...formTitleStyle, margin: "0", paddingBottom: "0", border: "none" }}>
+                  Reservation Management
+                </h2>
               </div>
               <div
                 style={{
                   display: "grid",
                   gridTemplateColumns: "repeat(2, 1fr)",
                   gap: "24px",
-                  marginTop: "24px"
+                  marginTop: "24px",
                 }}
               >
                 {/* Room Availability Card */}
@@ -389,26 +442,29 @@ const Dashboard = ({ onNavigate }) => {
                   onClick={() => handleCardClick("room-availability")}
                   style={{
                     ...cardStyle,
-                    boxShadow: hoveredCard === "room-availability"
-                      ? "0 8px 16px rgba(34,197,94,0.15)"
-                      : cardStyle.boxShadow,
-                    borderColor: hoveredCard === "room-availability"
-                      ? "#22c55e"
-                      : cardStyle.border,
+                    boxShadow:
+                      hoveredCard === "room-availability"
+                        ? "0 8px 16px rgba(34,197,94,0.15)"
+                        : cardStyle.boxShadow,
+                    borderColor:
+                      hoveredCard === "room-availability" ? "#22c55e" : cardStyle.border,
                   }}
                   onMouseEnter={() => setHoveredCard("room-availability")}
                   onMouseLeave={() => setHoveredCard(null)}
                 >
-                  <div style={{...iconContainerStyle, backgroundColor: "#f0fdf4"}}>🏨</div>
+                  <div style={{ ...iconContainerStyle, backgroundColor: "#f0fdf4" }}>🏨</div>
                   <h3 style={cardTitleStyle}>Room Availability</h3>
-                  <p style={cardDescriptionStyle}>Check room status, availability, and manage room assignments</p>
+                  <p style={cardDescriptionStyle}>
+                    Check room status, availability, and manage room assignments
+                  </p>
                   <div
                     style={{
                       ...cardHoverStyle,
                       background: "linear-gradient(90deg, #22c55e, #4ade80)",
-                      transform: hoveredCard === "room-availability"
-                        ? "scaleX(1)"
-                        : cardHoverStyle.transform,
+                      transform:
+                        hoveredCard === "room-availability"
+                          ? "scaleX(1)"
+                          : cardHoverStyle.transform,
                     }}
                   ></div>
                 </div>
@@ -418,26 +474,29 @@ const Dashboard = ({ onNavigate }) => {
                   onClick={() => handleCardClick("reserved-room-info")}
                   style={{
                     ...cardStyle,
-                    boxShadow: hoveredCard === "reserved-room-info"
-                      ? "0 8px 16px rgba(239,68,68,0.15)"
-                      : cardStyle.boxShadow,
-                    borderColor: hoveredCard === "reserved-room-info"
-                      ? "#ef4444"
-                      : cardStyle.border,
+                    boxShadow:
+                      hoveredCard === "reserved-room-info"
+                        ? "0 8px 16px rgba(239,68,68,0.15)"
+                        : cardStyle.boxShadow,
+                    borderColor:
+                      hoveredCard === "reserved-room-info" ? "#ef4444" : cardStyle.border,
                   }}
                   onMouseEnter={() => setHoveredCard("reserved-room-info")}
                   onMouseLeave={() => setHoveredCard(null)}
                 >
-                  <div style={{...iconContainerStyle, backgroundColor: "#fef2f2"}}>📋</div>
+                  <div style={{ ...iconContainerStyle, backgroundColor: "#fef2f2" }}>📋</div>
                   <h3 style={cardTitleStyle}>Reserved Room Information</h3>
-                  <p style={cardDescriptionStyle}>View and manage current reservations and booking details</p>
+                  <p style={cardDescriptionStyle}>
+                    View and manage current reservations and booking details
+                  </p>
                   <div
                     style={{
                       ...cardHoverStyle,
                       background: "linear-gradient(90deg, #ef4444, #f87171)",
-                      transform: hoveredCard === "reserved-room-info"
-                        ? "scaleX(1)"
-                        : cardHoverStyle.transform,
+                      transform:
+                        hoveredCard === "reserved-room-info"
+                          ? "scaleX(1)"
+                          : cardHoverStyle.transform,
                     }}
                   ></div>
                 </div>
@@ -450,61 +509,58 @@ const Dashboard = ({ onNavigate }) => {
   );
 };
 
-/* Enhanced Styles */
+// ========== Styles ==========
 const sidebarButtonStyle = (isActive) => ({
-  backgroundColor: isActive ? "#3b82f6" : "transparent",
-  color: "white",
+  textAlign: "left",
+  padding: "12px 16px",
   border: "none",
   borderRadius: "8px",
-  padding: "12px 16px",
-  textAlign: "left",
   cursor: "pointer",
-  transition: "all 0.2s ease",
-  marginBottom: "4px",
   fontSize: "15px",
-  fontWeight: isActive ? "600" : "400",
-  width: "100%",
+  transition: "all 0.2s ease",
+  color: isActive ? "#fff" : "#cbd5e1",
+  backgroundColor: isActive ? "#3b82f6" : "transparent",
+  marginBottom: "4px",
+  display: "flex",
+  alignItems: "center",
+  gap: "8px",
 });
 
 const cardStyle = {
   backgroundColor: "white",
-  borderRadius: "12px",
+  borderRadius: "16px",
   padding: "24px",
-  boxShadow: "0 4px 6px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.05)",
   cursor: "pointer",
-  transition: "all 0.3s ease",
   position: "relative",
   overflow: "hidden",
-  border: "1px solid #e2e8f0",
-  minHeight: "180px",
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "center",
+  border: "1px solid #e5e7eb",
+  transition: "all 0.3s ease",
+  boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
 };
 
 const iconContainerStyle = {
-  fontSize: "32px",
+  fontSize: "28px",
   marginBottom: "16px",
-  width: "60px",
-  height: "60px",
+  backgroundColor: "#f8fafc",
+  width: "56px",
+  height: "56px",
   borderRadius: "12px",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  backgroundColor: "#f1f5f9"
 };
 
 const cardTitleStyle = {
   fontSize: "18px",
   fontWeight: "600",
+  marginBottom: "8px",
   color: "#1e293b",
-  marginBottom: "8px"
 };
 
 const cardDescriptionStyle = {
   color: "#64748b",
   fontSize: "14px",
-  lineHeight: "1.5"
+  lineHeight: "1.5",
 };
 
 const cardHoverStyle = {
@@ -512,241 +568,212 @@ const cardHoverStyle = {
   bottom: "0",
   left: "0",
   width: "100%",
-  height: "4px",
+  height: "3px",
   background: "linear-gradient(90deg, #3b82f6, #60a5fa)",
   transform: "scaleX(0)",
   transformOrigin: "left",
-  transition: "transform 0.3s ease"
+  transition: "transform 0.3s ease",
 };
 
 const formContainerStyle = {
   backgroundColor: "white",
-  borderRadius: "12px",
+  borderRadius: "16px",
   padding: "32px",
-  boxShadow: "0 4px 6px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.05)",
-  border: "1px solid #e2e8f0",
-  maxWidth: "800px",
-  margin: "0 auto"
+  boxShadow: "0 4px 12px rgba(0,0,0,0.05)",
+  marginBottom: "32px",
 };
 
 const formTitleStyle = {
-  fontSize: "24px",
+  fontSize: "22px",
   fontWeight: "600",
-  color: "#1e293b",
   marginBottom: "24px",
+  color: "#1e293b",
   paddingBottom: "16px",
-  borderBottom: "1px solid #e2e8f0"
+  borderBottom: "1px solid #e5e7eb",
 };
 
 const formStyle = {
   display: "flex",
   flexDirection: "column",
-  gap: "20px"
+  gap: "20px",
 };
 
 const inputGroupStyle = {
   display: "flex",
   flexDirection: "column",
-  gap: "8px"
+  gap: "8px",
 };
 
 const labelStyle = {
   fontSize: "14px",
+  color: "#475569",
   fontWeight: "500",
-  color: "#374151"
 };
 
 const inputStyle = {
-  padding: "12px 16px",
-  border: "1px solid #d1d5db",
+  padding: "10px 14px",
   borderRadius: "8px",
-  fontSize: "16px",
-  transition: "all 0.2s ease",
+  border: "1px solid #cbd5e1",
+  fontSize: "14px",
+  outline: "none",
+  transition: "border-color 0.2s ease",
 };
 
 const textareaStyle = {
-  padding: "12px 16px",
-  border: "1px solid #d1d5db",
-  borderRadius: "8px",
-  fontSize: "16px",
-  transition: "all 0.2s ease",
+  ...inputStyle,
   minHeight: "100px",
   resize: "vertical",
-  fontFamily: "inherit"
 };
 
 const primaryButtonStyle = {
   backgroundColor: "#3b82f6",
   color: "white",
-  border: "none",
-  borderRadius: "8px",
   padding: "12px 20px",
-  fontSize: "16px",
-  fontWeight: "500",
+  borderRadius: "8px",
+  border: "none",
   cursor: "pointer",
-  transition: "all 0.2s ease",
-  marginTop: "8px"
+  fontSize: "15px",
+  fontWeight: "500",
+  transition: "background-color 0.2s ease",
 };
 
 const secondaryButtonStyle = {
-  backgroundColor: "#6b7280",
+  backgroundColor: "#22c55e",
   color: "white",
-  border: "none",
-  borderRadius: "8px",
   padding: "12px 20px",
-  fontSize: "16px",
-  fontWeight: "500",
+  borderRadius: "8px",
+  border: "none",
   cursor: "pointer",
-  transition: "all 0.2s ease"
+  fontSize: "15px",
+  fontWeight: "500",
+  transition: "background-color 0.2s ease",
 };
 
 const warningButtonStyle = {
   backgroundColor: "#ef4444",
   color: "white",
-  border: "none",
-  borderRadius: "8px",
   padding: "12px 20px",
-  fontSize: "16px",
-  fontWeight: "500",
+  borderRadius: "8px",
+  border: "none",
   cursor: "pointer",
-  transition: "all 0.2s ease"
+  fontSize: "15px",
+  fontWeight: "500",
+  transition: "background-color 0.2s ease",
 };
 
-// Checkbox styles
 const checkboxGroupStyle = {
   display: "flex",
   flexDirection: "column",
   gap: "4px",
-  padding: "16px",
-  border: "1px solid #e2e8f0",
-  borderRadius: "8px",
-  backgroundColor: "#f8fafc"
 };
 
 const checkboxLabelStyle = {
   display: "flex",
   alignItems: "center",
   gap: "8px",
-  fontSize: "16px",
-  fontWeight: "500",
-  color: "#374151",
-  cursor: "pointer"
+  fontSize: "15px",
+  color: "#1e293b",
 };
 
 const checkboxStyle = {
   width: "16px",
   height: "16px",
-  cursor: "pointer"
+  cursor: "pointer",
 };
 
 const checkboxDescriptionStyle = {
-  fontSize: "14px",
-  color: "#6b7280",
+  fontSize: "13px",
+  color: "#64748b",
   marginLeft: "24px",
-  margin: "0"
 };
 
-// Billing styles
 const billingCardStyle = {
+  backgroundColor: "#f8fafc",
   padding: "20px",
-  border: "2px solid #3b82f6",
-  borderRadius: "8px",
-  backgroundColor: "#f0f9ff"
+  borderRadius: "12px",
+  marginBottom: "24px",
 };
 
 const billingCardTitleStyle = {
-  fontSize: "18px",
+  fontSize: "16px",
   fontWeight: "600",
   color: "#1e293b",
-  marginBottom: "12px"
+  marginBottom: "12px",
 };
 
 const planInfoStyle = {
   display: "flex",
   justifyContent: "space-between",
-  alignItems: "center",
-  marginBottom: "8px"
+  marginBottom: "8px",
 };
 
 const planNameStyle = {
-  fontSize: "16px",
   fontWeight: "500",
-  color: "#374151"
+  color: "#1e293b",
 };
 
 const planPriceStyle = {
-  fontSize: "18px",
   fontWeight: "600",
-  color: "#3b82f6"
+  color: "#3b82f6",
 };
 
 const planDescriptionStyle = {
-  fontSize: "14px",
-  color: "#6b7280",
-  margin: "0"
+  fontSize: "13px",
+  color: "#64748b",
 };
 
 const cardRowStyle = {
-  display: "grid",
-  gridTemplateColumns: "1fr 1fr",
-  gap: "16px"
+  display: "flex",
+  gap: "16px",
 };
 
-// Database styles
 const databaseActionStyle = {
+  backgroundColor: "#f8fafc",
   padding: "20px",
-  border: "1px solid #e2e8f0",
-  borderRadius: "8px",
-  backgroundColor: "#f8fafc"
+  borderRadius: "12px",
+  marginBottom: "20px",
 };
 
 const databaseActionTitleStyle = {
-  fontSize: "18px",
+  fontSize: "16px",
   fontWeight: "600",
   color: "#1e293b",
-  marginBottom: "8px"
+  marginBottom: "8px",
 };
 
 const databaseActionDescriptionStyle = {
   fontSize: "14px",
-  color: "#6b7280",
-  marginBottom: "16px"
+  color: "#64748b",
+  marginBottom: "12px",
 };
 
 const fileInputStyle = {
-  padding: "8px",
-  border: "1px solid #d1d5db",
-  borderRadius: "8px",
-  fontSize: "14px",
   marginBottom: "12px",
-  width: "100%"
+  fontSize: "14px",
 };
 
 const statsContainerStyle = {
   display: "grid",
-  gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-  gap: "16px"
+  gridTemplateColumns: "repeat(3, 1fr)",
+  gap: "16px",
 };
 
 const statItemStyle = {
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center",
-  padding: "12px",
   backgroundColor: "white",
-  borderRadius: "6px",
-  border: "1px solid #e2e8f0"
+  padding: "12px",
+  borderRadius: "8px",
+  textAlign: "center",
 };
 
 const statLabelStyle = {
-  fontSize: "14px",
-  color: "#6b7280"
+  fontSize: "13px",
+  color: "#64748b",
 };
 
 const statValueStyle = {
   fontSize: "16px",
   fontWeight: "600",
-  color: "#1e293b"
+  color: "#1e293b",
 };
 
 export default Dashboard;

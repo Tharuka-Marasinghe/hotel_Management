@@ -70,28 +70,49 @@ const ReservedRoomInfo = ({ onNavigate }) => {
   return (
     <div style={{ padding: "32px", backgroundColor: "#f5f7fa", minHeight: "100vh" }}>
       <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
-        {/* Header with Back Buttons */}
-        <div style={{ display: "flex", alignItems: "center", gap: "16px", marginBottom: "32px" }}>
-          <button
-            onClick={handleBackToReservation}
-            style={backButtonStyle}
-          >
-            ← Reservation Management
-          </button>
-          <button
+        {/* Header with Navigation */}
+        <div style={{ 
+          display: "flex", 
+          justifyContent: "space-between", 
+          alignItems: "center", 
+          marginBottom: "32px",
+          flexWrap: "wrap",
+          gap: "16px"
+        }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+            <button
+              onClick={handleBackToReservation}
+              style={backButtonStyle}
+            >
+              ← Reservation Management
+            </button>
+            <h1 style={{ fontSize: "28px", fontWeight: "bold", color: "#1e293b", margin: "0" }}>
+              Reserved Room Information
+            </h1>
+          </div>
+          
+          <button 
             onClick={handleBackToAvailability}
             style={{
-              ...backButtonStyle,
-              backgroundColor: "#f0f9ff",
-              color: "#3b82f6",
-              borderColor: "#3b82f6"
+              backgroundColor: "#3b82f6",
+              color: "white",
+              border: "none",
+              borderRadius: "8px",
+              padding: "14px 28px",
+              fontSize: "16px",
+              fontWeight: "500",
+              cursor: "pointer",
+              transition: "all 0.2s ease",
+              boxShadow: "0 2px 4px rgba(59,130,246,0.2)",
+              display: "flex",
+              alignItems: "center",
+              gap: "8px"
             }}
+            onMouseEnter={(e) => e.target.style.backgroundColor = "#2563eb"}
+            onMouseLeave={(e) => e.target.style.backgroundColor = "#3b82f6"}
           >
-            🏨 Room Availability
+            🏨 Back to Room Availability
           </button>
-          <h1 style={{ fontSize: "28px", fontWeight: "bold", color: "#1e293b", margin: "0" }}>
-            Reserved Room Information
-          </h1>
         </div>
 
         {/* Statistics Cards */}
@@ -244,26 +265,18 @@ const ReservedRoomInfo = ({ onNavigate }) => {
           </div>
         </div>
 
-        {/* Action Buttons */}
+        {/* Additional Action Buttons */}
         <div style={{
           display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
+          justifyContent: "center",
+          gap: "12px",
           marginTop: "24px"
         }}>
-          <div style={{ display: "flex", gap: "12px" }}>
-            <button style={secondaryButtonStyle}>
-              📊 Export Report
-            </button>
-            <button style={secondaryButtonStyle}>
-              📧 Send Notifications
-            </button>
-          </div>
-          <button 
-            onClick={handleBackToAvailability}
-            style={primaryButtonStyle}
-          >
-            ← Back to Room Availability
+          <button style={secondaryButtonStyle}>
+            📊 Export Report
+          </button>
+          <button style={secondaryButtonStyle}>
+            📧 Send Notifications
           </button>
         </div>
       </div>

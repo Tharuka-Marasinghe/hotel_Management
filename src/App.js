@@ -1,86 +1,48 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AppProvider } from './context/AppContext';
 import TopBar from './components/TopBar';
 import Dashboard from './components/Dashboard';
 import CompanySettings from './pages/CompanySettings';
+import ReservationHome from './pages/ReservationHome/ReservationHome';
+import CheckIn from "./pages/ReservationHome/CheckIn";
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('dashboard');
-
-  const handleNavigation = (page) => {
-    setCurrentPage(page);
-  };
-
-  const handleBackToDashboard = () => {
-    setCurrentPage('dashboard');
-  };
-
-  const renderCurrentPage = () => {
-    switch (currentPage) {
-      case 'company-settings':
-        return <CompanySettings onBack={handleBackToDashboard} />;
-      case 'user-management':
-        return (
-          <div className="p-6">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">User Management</h2>
-            <p className="text-gray-600">User management functionality coming soon...</p>
-          </div>
-        );
-      case 'content-management':
-        return (
-          <div className="p-6">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">Content Management</h2>
-            <p className="text-gray-600">Content management functionality coming soon...</p>
-          </div>
-        );
-      case 'analytics':
-        return (
-          <div className="p-6">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">Analytics</h2>
-            <p className="text-gray-600">Analytics functionality coming soon...</p>
-          </div>
-        );
-      case 'security':
-        return (
-          <div className="p-6">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">Security Settings</h2>
-            <p className="text-gray-600">Security settings functionality coming soon...</p>
-          </div>
-        );
-      case 'notifications':
-        return (
-          <div className="p-6">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">Notifications</h2>
-            <p className="text-gray-600">Notifications functionality coming soon...</p>
-          </div>
-        );
-      case 'database':
-        return (
-          <div className="p-6">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">Database Management</h2>
-            <p className="text-gray-600">Database management functionality coming soon...</p>
-          </div>
-        );
-      case 'billing':
-        return (
-          <div className="p-6">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">Billing & Payments</h2>
-            <p className="text-gray-600">Billing functionality coming soon...</p>
-          </div>
-        );
-      default:
-        return <Dashboard onNavigate={handleNavigation} />;
-    }
-  };
-
   return (
     <AppProvider>
-      <div className="min-h-screen bg-gray-50">
-        <TopBar />
-        <main>
-          {renderCurrentPage()}
-        </main>
-      </div>
+      <Router>
+        <div className="min-h-screen bg-gray-50">
+          <TopBar />
+          <main>
+            <Routes>
+              {/* Dashboard */}
+              <Route path="/" element={<Dashboard />} />
+
+              {/* Company Settings */}
+              <Route path="/company-settings" element={<CompanySettings />} />
+
+              {/* Reservation Management */}
+              <Route path="/reservation" element={<ReservationHome />} />
+              
+              {/* Check In Page - ADD THIS ROUTE */}
+              <Route path="/checkin" element={<CheckIn />} />
+
+              {/* Other placeholder pages */}
+              <Route path="/user-management" element={<h2>User Management Coming Soon...</h2>} />
+              <Route path="/content-management" element={<h2>Content Management Coming Soon...</h2>} />
+              <Route path="/analytics" element={<h2>Analytics Coming Soon...</h2>} />
+              <Route path="/security" element={<h2>Security Settings Coming Soon...</h2>} />
+              <Route path="/notifications" element={<h2>Notifications Coming Soon...</h2>} />
+              <Route path="/database" element={<h2>Database Management Coming Soon...</h2>} />
+              <Route path="/billing" element={<h2>Billing & Payments Coming Soon...</h2>} />
+              
+              {/* Additional routes you might need later */}
+              <Route path="/checkout" element={<h2>Checkout Page Coming Soon...</h2>} />
+              <Route path="/edit-customer" element={<h2>Edit Customer Page Coming Soon...</h2>} />
+            </Routes>
+          </main>
+        </div>
+      </Router>
     </AppProvider>
   );
 }
