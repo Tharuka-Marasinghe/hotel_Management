@@ -92,7 +92,7 @@ const CheckIn = () => {
       {/* Progress Bar */}
       <div
         style={{
-          backgroundColor: "#e5e7eb",
+          backgroundColor: "#f0eaeaff",
           borderRadius: "8px",
           overflow: "hidden",
           marginBottom: "20px",
@@ -102,7 +102,7 @@ const CheckIn = () => {
           style={{
             width: `${progressWidth}%`,
             height: "8px",
-            backgroundColor: "#3b82f6",
+            backgroundColor: "#4ae03dff",
           }}
         />
       </div>
@@ -302,7 +302,7 @@ const inputStyle = {
 };
 
 const backButtonStyle = {
-  backgroundColor: "#6b7280",
+  backgroundColor: "#fb2424ff",
   color: "white",
   border: "none",
   padding: "8px 14px",
@@ -311,7 +311,7 @@ const backButtonStyle = {
 };
 
 const clearButtonStyle = {
-  backgroundColor: "#fbbf24",
+  backgroundColor: "#fb2424ff",
   color: "white",
   border: "none",
   padding: "8px 14px",
@@ -320,7 +320,7 @@ const clearButtonStyle = {
 };
 
 const nextButtonStyle = {
-  backgroundColor: "#3b82f6",
+  backgroundColor: "#2c28f9ff",
   color: "white",
   border: "none",
   padding: "8px 14px",
@@ -338,7 +338,7 @@ const submitButtonStyle = {
 };
 
 const disabledButtonStyle = {
-  backgroundColor: "#d1d5db",
+  backgroundColor: "#868b92ff",
   color: "white",
   border: "none",
   padding: "8px 14px",
